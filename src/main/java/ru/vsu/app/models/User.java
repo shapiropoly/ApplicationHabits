@@ -34,7 +34,7 @@ public class User {
     private String password;
 
 
-    @ManyToMany (fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_to_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -52,13 +52,12 @@ public class User {
     }
 
     public User(String name, String username, String email,
-                String password, ArrayList<Role> role_ids, LocalDate dateRegistration,
+                String password, LocalDate dateRegistration,
                 LocalDate dateLastActivity) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role_ids = role_ids;
         this.dateRegistration = dateRegistration;
         this.dateLastActivity = dateLastActivity;
     }

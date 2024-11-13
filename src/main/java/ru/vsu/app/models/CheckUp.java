@@ -22,4 +22,13 @@ public class CheckUp {
     @ManyToOne
     @JoinColumn(name = "user_to_habit_id")
     private UserToHabit userToHabitId;
+
+
+    public CheckUp() {
+    }
+
+    public CheckUp(Date dateCheckUp, UserToHabit userToHabitId) {
+        this.dateCheckUp = dateCheckUp;
+        this.userToHabitId = userToHabitId;
+    }
 }

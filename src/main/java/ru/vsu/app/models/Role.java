@@ -15,13 +15,13 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "role_id", nullable = false)
+    @Column(name = "id", nullable = false)
     private int id;
 
     @Column(name = "title")
     private String title;
 
-    @ManyToMany (fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_to_roles",
             joinColumns = @JoinColumn(name = "role_id"),

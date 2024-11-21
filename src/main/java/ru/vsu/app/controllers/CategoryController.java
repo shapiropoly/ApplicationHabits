@@ -49,5 +49,4 @@ public class CategoryController {
     public Category getCategoryByTitle(@PathVariable String title) {
         return categoryService.getCategoryByTitle(title);
     }
-
 }

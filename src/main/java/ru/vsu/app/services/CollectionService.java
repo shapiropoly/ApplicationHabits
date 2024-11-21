@@ -1,26 +1,17 @@
 package ru.vsu.app.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ru.vsu.app.models.Collection;
-import ru.vsu.app.repositories.CollectionRepository;
 
 import java.util.List;
 
-@Service
-public class CollectionService {
-    private CollectionRepository collectionRepository;
+public interface CollectionService {
+    List<Collection> getAllCollection();
 
-    @Autowired
-    public void setCollectionRepository(CollectionRepository collectionRepository) {
-        this.collectionRepository = collectionRepository;
-    }
+    Collection addCollection(Collection collection);
 
-    public List<Collection> getAllCollections() {
-        return collectionRepository.findAll();
-    }
+    Collection updateCollection(Collection collection);
 
-    public void add(Collection collection) {
-        collectionRepository.save(collection);
-    }
+    void deleteCollection(Integer id);
+
+    Collection getCollectionById(Integer id);
 }

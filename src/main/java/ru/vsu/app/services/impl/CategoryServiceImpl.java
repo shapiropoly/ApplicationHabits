@@ -4,13 +4,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.vsu.app.models.Category;
-import ru.vsu.app.models.Habit;
 import ru.vsu.app.repositories.CategoryRepository;
-import ru.vsu.app.repositories.HabitRepository;
 import ru.vsu.app.services.CategoryService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

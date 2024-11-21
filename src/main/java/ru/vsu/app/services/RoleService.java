@@ -1,27 +1,15 @@
 package ru.vsu.app.services;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ru.vsu.app.models.Role;
-import ru.vsu.app.repositories.RoleRepository;
 
 import java.util.List;
 
-@Service
-public class RoleService {
-    private RoleRepository roleRepository;
+public interface RoleService {
+    List<Role> getAllRole();
 
-    @Autowired
-    public void setRoleRepository(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
+    Role addRole(Role role);
 
-    public List<Role> getAllRoles() {
-        return roleRepository.findAll();
-    }
+    Role updateRole(Role role);
 
-    public void add(Role role) {
-        roleRepository.save(role);
-    }
+    void deleteRole(Integer id);
 }

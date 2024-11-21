@@ -1,32 +1,19 @@
 package ru.vsu.app.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.client.RestTemplate;
 import ru.vsu.app.models.User;
-import ru.vsu.app.repositories.UserRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class UserService {
-    private UserRepository userRepository;
+public interface UserService {
+    List<User> getAllUsers();
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    User addUser(User user);
 
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    User updateUser(User user);
 
+    void deleteUser(Integer id);
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
+    User getUserById(Integer id);
 
-    public void add(User user) {
-        userRepository.save(user);
-    }
+    User getUserByUsername(String username);
 }

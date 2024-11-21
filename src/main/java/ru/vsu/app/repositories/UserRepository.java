@@ -6,4 +6,6 @@ import ru.vsu.app.models.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
+    void deleteUserById(Integer id);
+    User getUserByUsername(String username);
 }

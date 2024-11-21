@@ -1,36 +1,20 @@
 package ru.vsu.app.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ru.vsu.app.models.Category;
-import ru.vsu.app.models.Habit;
-import ru.vsu.app.repositories.CategoryRepository;
 
 import java.util.List;
 
-@Service
-public class CategoryService {
-    private CategoryRepository categoryRepository;
+public interface CategoryService {
 
-    @Autowired
-    public void setCategoryRepository(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
+    List<Category> getAllCategories();
 
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
-    }
+    Category addCategory(Category category);
 
+    Category updateCategory(Category category);
 
-    public void add(Category category) {
-        categoryRepository.save(category);
-    }
+    void deleteCategory(Integer id);
 
-    public Category findByTitle(String title) {
-        return categoryRepository.findByTitle(title);
-    }
+    Category getCategoryById(Integer id);
 
-    public void findByTitle2(String title) {
-        System.out.println(categoryRepository.findByTitle(title));
-    }
+    Category getCategoryByTitle(String title);
 }

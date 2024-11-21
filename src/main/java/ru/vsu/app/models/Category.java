@@ -26,7 +26,7 @@ public class Category {
     @Column(name = "image")
     private String image;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Habit> habits;
 
     public Category() {

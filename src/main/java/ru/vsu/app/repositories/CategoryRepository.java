@@ -1,11 +1,13 @@
 package ru.vsu.app.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import ru.vsu.app.models.Category;
 
-import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
-    Category findByTitle(String title);
+    void deleteCategoryById(Integer id);
+    Optional<Category> findByTitle(String title);
 }

@@ -1,32 +1,21 @@
 package ru.vsu.app.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import ru.vsu.app.models.HabitDto;
 import ru.vsu.app.models.Habit;
-import ru.vsu.app.repositories.HabitRepository;
+
 
 import java.util.List;
 
-@Service
-public class HabitService {
-    private HabitRepository habitRepository;
 
-    @Autowired
-    public void setHabitRepository(HabitRepository habitRepository) {
-        this.habitRepository = habitRepository;
-    }
+public interface HabitService {
 
-    public List<Habit> getAllHabits() {
-        return habitRepository.findAll();
-    }
+    List<HabitDto> getAllHabits();
 
-    public void add(Habit habit) {
-        habitRepository.save(habit);
-    }
+    HabitDto addHabit(HabitDto habitDto);
 
-    public Habit getById(Integer id) {
-        return habitRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Привычка с ID " + id + " не найдена"));
-    }
+    Habit updateHabit(Habit habit);
 
+    void deleteHabit(Integer id);
+
+    Habit getHabitById(Integer id);
 }

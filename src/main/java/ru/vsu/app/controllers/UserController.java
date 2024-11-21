@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.vsu.app.models.User;
 import ru.vsu.app.services.UserService;
 
-import java.util.List;
 
 @Controller
 @RequestMapping("/users")
@@ -26,11 +25,4 @@ public class UserController {
         model.addAttribute("user", user);
         return "users";
     }
-
-
-
-//    @GetMapping
-//    public List<User> showAllUsers(Model model) {
-//        return userService.getAllUsers();
-//    }
 }

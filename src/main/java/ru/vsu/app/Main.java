@@ -45,37 +45,37 @@ public class Main implements CommandLineRunner {
 //    }
 
 
-    private static List<User> fillTableUser(UserRepository userRepository) throws ParseException {
-        List<User> userList = new ArrayList<>();
-
-        Faker faker = new Faker();
-
-        for (int i = 0; i < 1000; i++) {
-            String name = faker.name().firstName();
-            String username = faker.name().username();
-            String email = faker.internet().emailAddress();
-            String address = faker.address().fullAddress();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-            Date firstDate = dateFormat.parse("2024/09/01");
-            Date lastDate = dateFormat.parse("2024/10/02");
-            Date date1 = faker.date().between(firstDate, lastDate);
-            Date date2 = faker.date().between(firstDate, lastDate);
-
-            LocalDate dateRegistration = date1.toInstant()
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate();
-            LocalDate dateLastActivity = date2.toInstant()
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate();
-
-            User user = new User(name, username, email, address,
-                    dateRegistration, dateLastActivity);
-
-            userList.add(user);
-
-//            userRepository.save(user);
-        }
-
-            return userList;
-    }
+//    private static List<User> fillTableUser(UserRepository userRepository) throws ParseException {
+//        List<User> userList = new ArrayList<>();
+//
+//        Faker faker = new Faker();
+//
+//        for (int i = 0; i < 1000; i++) {
+//            String name = faker.name().firstName();
+//            String username = faker.name().username();
+//            String email = faker.internet().emailAddress();
+//            String address = faker.address().fullAddress();
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//            Date firstDate = dateFormat.parse("2024/09/01");
+//            Date lastDate = dateFormat.parse("2024/10/02");
+//            Date date1 = faker.date().between(firstDate, lastDate);
+//            Date date2 = faker.date().between(firstDate, lastDate);
+//
+//            LocalDate dateRegistration = date1.toInstant()
+//                    .atZone(ZoneId.systemDefault())
+//                    .toLocalDate();
+//            LocalDate dateLastActivity = date2.toInstant()
+//                    .atZone(ZoneId.systemDefault())
+//                    .toLocalDate();
+//
+//            User user = new User(name, username, email, address,
+//                    dateRegistration, dateLastActivity);
+//
+//            userList.add(user);
+//
+////            userRepository.save(user);
+//        }
+//
+//            return userList;
+//    }
 }

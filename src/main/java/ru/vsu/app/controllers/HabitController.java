@@ -1,75 +1,49 @@
 package ru.vsu.app.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.vsu.app.models.Category;
 import ru.vsu.app.models.Habit;
-import ru.vsu.app.models.HabitDTO;
-import ru.vsu.app.services.CategoryService;
+import ru.vsu.app.models.HabitDto;
 import ru.vsu.app.services.HabitService;
 
+import java.util.List;
 
-@Controller
-@RequestMapping("/habits")
+
+@RestController
+@RequestMapping("/api/v1/habits")
+@AllArgsConstructor
 public class HabitController {
 
-    private HabitService habitService;
-    private CategoryService categoryService;
+    private final HabitService habitService;
 
-    @Autowired
-    public void setHabitService(HabitService habitService) {
-        this.habitService = habitService;
-    }
-
-    @Autowired
-    public void setCategoryService(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
-
+    // получить список привычек
     @GetMapping
-    public String showAllHabits(Model model) {
-        Habit habit = new Habit();
-        model.addAttribute("habits", habitService.getAllHabits());
-        model.addAttribute("habit", habit);
-        model.addAttribute("categories", categoryService.getAllCategories());
-        return "habits";
+    public List<HabitDto> listHabits() {
+        return habitService.getAllHabits();
     }
 
-    @PostMapping("/add")
-    public String addHabit(@ModelAttribute HabitDTO habitDTO, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-
-            return "form-view";
-        }
-
-        System.out.println("Введенные данные: " + "название: " + habitDTO.getTitle() + ", категория: " + habitDTO.getCategoryTitle());
-        Category category = categoryService.findByTitle(habitDTO.getCategoryTitle());
-
-        System.out.println("Название категории введенной привычки: " + habitDTO.getCategoryTitle());
-        System.out.println("Название найденной категории: " + category.getTitle());
-
-        if (category != null) {
-            Habit habit = new Habit(
-                    habitDTO.getTitle(),
-                    habitDTO.getDescription(),
-                    category,
-                    habitDTO.getImage());
-
-            habitService.add(habit);
-
-            return "redirect:/habits";
-        } else {
-            return "";
-        }
+    // добавить привычку
+    @PostMapping("add_habit")
+    public HabitDto addHabit(@RequestBody HabitDto habitDto) {
+        return habitService.addHabit(habitDto);
     }
 
-    @GetMapping("/show/{id}")
-    public String showOneHabit(Model model, @PathVariable(value = "id") Integer id) {
-        Habit habit = habitService.getById(id);
-        model.addAttribute("habit", habit);
-        return "habit-page";
+    // изменить привычку
+    @PutMapping("update_habit")
+    public Habit updateHabit(@RequestBody Habit habit) {
+        return habitService.updateHabit(habit);
+    }
+
+    // удалить привычку
+    @DeleteMapping("delete_habit/{id}")
+    public void deleteHabit(@PathVariable Integer id) {
+        habitService.deleteHabit(id);
+    }
+
+    // получить привычку по id
+    @GetMapping("/{id}")
+    public Habit getHabitById(@PathVariable Integer id) {
+        return habitService.getHabitById(id);
     }
 }

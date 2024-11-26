@@ -12,7 +12,7 @@ public class UserToRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "users_to_roles_id")
+    @Column(name = "id")
     private int id;
 
     @ManyToOne

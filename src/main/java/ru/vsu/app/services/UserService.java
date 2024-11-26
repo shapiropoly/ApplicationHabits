@@ -1,6 +1,8 @@
 package ru.vsu.app.services;
 
+import ru.vsu.app.models.Role;
 import ru.vsu.app.models.User;
+import ru.vsu.app.models.UserToRole;
 import ru.vsu.app.models.dto.UserDto;
 
 import java.util.List;
@@ -17,4 +19,8 @@ public interface UserService {
     UserDto getUserById(Integer id);
 
     UserDto getUserByUsername(String username);
+
+    void addRoleToUser(Integer userId, Integer roleId);
+
+    void removeRoleFromUser(Integer userId, Integer roleId);
 }

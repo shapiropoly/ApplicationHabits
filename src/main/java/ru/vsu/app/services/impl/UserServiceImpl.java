@@ -5,12 +5,16 @@ import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.vsu.app.models.Habit;
+import ru.vsu.app.models.Role;
 import ru.vsu.app.models.User;
+import ru.vsu.app.models.UserToRole;
 import ru.vsu.app.models.dto.HabitDto;
 import ru.vsu.app.models.dto.UserDto;
 import ru.vsu.app.models.mappers.HabitMapper;
 import ru.vsu.app.models.mappers.UserMappers;
+import ru.vsu.app.repositories.RoleRepository;
 import ru.vsu.app.repositories.UserRepository;
+import ru.vsu.app.repositories.UserToRoleRepository;
 import ru.vsu.app.services.UserService;
 
 import java.util.List;
@@ -21,6 +25,8 @@ import java.util.stream.Collectors;
 @Primary
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
+    private RoleRepository roleRepository;
+    private UserToRoleRepository userToRoleRepository;
 
     @Override
     public List<UserDto> getAllUsers() {
@@ -86,4 +92,25 @@ public class UserServiceImpl implements UserService {
         User findUser = userRepository.getUserByUsername(username);
         return UserMappers.toUserDto(findUser);
     }
+
+    @Override
+    public void addRoleToUser(Integer userId, Integer roleId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Пользователь не найден"));
+        Role role = roleRepository.findById(roleId)
+                .orElseThrow(() -> new IllegalArgumentException("Роль не найдена"));
+
+        UserToRole userToRole = new UserToRole(user, role);
+        userToRoleRepository.save(userToRole);
+    }
+
+    @Transactional
+    @Override
+    public void removeRoleFromUser(Integer userId, Integer roleId) {
+        UserToRole userToRole = userToRoleRepository.findByUserIdAndRoleId(userId, roleId)
+                .orElseThrow(() -> new IllegalArgumentException("Связь не найдена"));
+
+        userToRoleRepository.delete(userToRole);
+    }
+
 }

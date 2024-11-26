@@ -2,6 +2,7 @@ package ru.vsu.app.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.vsu.app.models.User;
+import ru.vsu.app.models.UserToRole;
 import ru.vsu.app.models.dto.UserDto;
 import ru.vsu.app.services.UserService;
 
@@ -49,5 +50,19 @@ public class UserController {
     @GetMapping("/username/{username}")
     public UserDto getUserByUsername(@PathVariable String username) {
         return userService.getUserByUsername(username);
+    }
+
+    // добавить роль пользователю
+    @PostMapping("/{userId}/roles/{roleId}")
+    public void addRoleToUser(@PathVariable Integer userId,
+                                    @PathVariable Integer roleId) {
+        userService.addRoleToUser(userId, roleId);
+    }
+
+    // удалить роль у пользователя
+    @DeleteMapping("/{userId}/roles/{roleId}")
+    public void removeRoleFromUser(@PathVariable Integer userId,
+                                   @PathVariable Integer roleId) {
+        userService.removeRoleFromUser(userId, roleId);
     }
 }

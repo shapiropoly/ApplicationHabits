@@ -1,19 +1,20 @@
 package ru.vsu.app.services;
 
 import ru.vsu.app.models.User;
+import ru.vsu.app.models.dto.UserDto;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> getAllUsers();
+    List<UserDto> getAllUsers();
 
-    User addUser(User user);
+    UserDto addUser(User user);
 
-    User updateUser(User user);
+    UserDto updateUser(Integer id, User user);
 
     void deleteUser(Integer id);
 
-    User getUserById(Integer id);
+    UserDto getUserById(Integer id);
 
-    User getUserByUsername(String username);
+    UserDto getUserByUsername(String username);
 }

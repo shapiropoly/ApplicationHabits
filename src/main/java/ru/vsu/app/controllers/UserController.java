@@ -2,6 +2,7 @@ package ru.vsu.app.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.vsu.app.models.User;
+import ru.vsu.app.models.dto.UserDto;
 import ru.vsu.app.services.UserService;
 
 import java.util.List;
@@ -15,20 +16,21 @@ public class UserController {
 
     // получить список пользователей
     @GetMapping
-    public List<User> listUsers() {
+    public List<UserDto> listUsers() {
         return userService.getAllUsers();
     }
 
     // добавить пользователя
     @PostMapping("add_user")
-    public User addUser(@RequestBody User user) {
+    public UserDto addUser(@RequestBody User user) {
         return userService.addUser(user);
     }
 
     // изменить пользователя
-    @PutMapping("update_user")
-    public User updateUser(@RequestBody User user) {
-        return userService.updateUser(user);
+    @PutMapping("update_user/{id}")
+    public UserDto updateUser(@PathVariable Integer id,
+                                @RequestBody User user) {
+        return userService.updateUser(id, user);
     }
 
     // удалить пользователя
@@ -38,14 +40,14 @@ public class UserController {
     }
 
     // получить привычку по id
-    @GetMapping("/{id}")
-    public User getUserById(@PathVariable Integer id) {
+    @GetMapping("/id/{id}")
+    public UserDto getUserById(@PathVariable Integer id) {
         return userService.getUserById(id);
     }
 
     // получить привычку по username
-    @GetMapping("/{username}")
-    public User getUserByUsername(@PathVariable String username) {
+    @GetMapping("/username/{username}")
+    public UserDto getUserByUsername(@PathVariable String username) {
         return userService.getUserByUsername(username);
     }
 }

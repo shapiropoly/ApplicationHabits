@@ -11,9 +11,9 @@ public interface HabitService {
 
     HabitDto addHabit(HabitDto habitDto);
 
-    Habit updateHabit(Habit habit);
+    HabitDto updateHabit(Integer id, HabitDto habitDto);
 
     void deleteHabit(Integer id);
 
-    Habit getHabitById(Integer id);
+    HabitDto getHabitById(Integer id);
 }

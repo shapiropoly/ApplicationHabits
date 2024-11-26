@@ -19,7 +19,7 @@ public class HabitController {
 
     // получить список привычек
     @GetMapping
-    public List<HabitDto> listHabits() {
+    public List<HabitDto> getAllHabits() {
         return habitService.getAllHabits();
     }
 
@@ -30,9 +30,9 @@ public class HabitController {
     }
 
     // изменить привычку
-    @PutMapping("update_habit")
-    public Habit updateHabit(@RequestBody Habit habit) {
-        return habitService.updateHabit(habit);
+    @PutMapping("update_habit/{id}")
+    public HabitDto updateHabit(@PathVariable Integer id, @RequestBody HabitDto habitDto) {
+        return habitService.updateHabit(id, habitDto);
     }
 
     // удалить привычку
@@ -43,7 +43,7 @@ public class HabitController {
 
     // получить привычку по id
     @GetMapping("/{id}")
-    public Habit getHabitById(@PathVariable Integer id) {
+    public HabitDto getHabitById(@PathVariable Integer id) {
         return habitService.getHabitById(id);
     }
 }

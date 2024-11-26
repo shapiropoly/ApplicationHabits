@@ -8,6 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
-    void deleteCategoryById(Integer id);
     Optional<Category> findByTitle(String title);
 }

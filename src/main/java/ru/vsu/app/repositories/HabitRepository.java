@@ -8,5 +8,4 @@ import ru.vsu.app.models.HabitDto;
 
 @Repository
 public interface HabitRepository extends JpaRepository<Habit, Integer> {
-    void deleteHabitById(Integer id);
 }

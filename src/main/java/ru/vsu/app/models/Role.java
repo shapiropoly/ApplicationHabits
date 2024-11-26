@@ -1,5 +1,6 @@
 package ru.vsu.app.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class Role {
     private String title;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
     @JoinTable(
             name = "users_to_roles",
             joinColumns = @JoinColumn(name = "role_id"),

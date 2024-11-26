@@ -1,5 +1,6 @@
 package ru.vsu.app.services.impl;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -17,21 +18,35 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<Role> getAllRole() {
-        return List.of();
+        return roleRepository.findAll();
     }
 
     @Override
     public Role addRole(Role role) {
-        return null;
+        return roleRepository.save(role);
     }
 
     @Override
-    public Role updateRole(Role role) {
-        return null;
+    public Role updateRole(Integer id, Role role) {
+        Role existingRole = roleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Роль c id: "+ id + " не найдена"));
+
+        existingRole.setTitle(role.getTitle());
+
+        return roleRepository.save(existingRole);
     }
 
+    @Transactional
     @Override
     public void deleteRole(Integer id) {
+        roleRepository.deleteById(id);
+    }
 
+    @Override
+    public Role getRoleById(Integer id) {
+        return roleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Роль c id: "+ id + " не найдена"));
     }
 }

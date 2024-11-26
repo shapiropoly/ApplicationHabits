@@ -9,7 +9,9 @@ public interface RoleService {
 
     Role addRole(Role role);
 
-    Role updateRole(Role role);
+    Role updateRole(Integer id, Role role);
 
     void deleteRole(Integer id);
+
+    Role getRoleById(Integer id);
 }

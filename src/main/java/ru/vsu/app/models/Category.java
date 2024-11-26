@@ -3,6 +3,7 @@ package ru.vsu.app.models;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import java.util.stream.Collectors;
 
 import java.util.List;
 
@@ -30,6 +31,10 @@ public class Category {
     private List<Habit> habits;
 
     public Category() {
+    }
+
+    public Category(int id) {
+        this.id = id;
     }
 
     public Category(String title, String description, String image) {

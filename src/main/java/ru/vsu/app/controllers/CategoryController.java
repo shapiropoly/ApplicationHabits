@@ -8,10 +8,11 @@ import ru.vsu.app.services.CategoryService;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/categories")
+@RestController
+@RequestMapping("/api/v1/categories")
 @AllArgsConstructor
 public class CategoryController {
+
     private final CategoryService categoryService;
 
     // получить список категорий

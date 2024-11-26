@@ -1,19 +1,18 @@
 package ru.vsu.app.services;
 
 import ru.vsu.app.models.Category;
+import ru.vsu.app.models.dto.CategoryDto;
 
 import java.util.List;
 
 public interface CategoryService {
-    List<Category> getAllCategories();
+    List<CategoryDto> getAllCategories();
 
-    Category addCategory(Category category);
+    CategoryDto addCategory(CategoryDto categoryDto);
 
-    Category updateCategory(Category category);
+    CategoryDto updateCategory(Integer id, CategoryDto categoryDto);
 
     void deleteCategory(Integer id);
 
-    Category getCategoryById(Integer id);
-
-    Category getCategoryByTitle(String title);
+    CategoryDto getCategoryById(Integer id);
 }

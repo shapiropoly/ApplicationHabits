@@ -1,9 +1,10 @@
 package ru.vsu.app.controllers;
 
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.vsu.app.models.Category;
+import ru.vsu.app.models.dto.CategoryDto;
+import ru.vsu.app.models.dto.HabitDto;
 import ru.vsu.app.services.CategoryService;
 
 import java.util.List;
@@ -17,20 +18,22 @@ public class CategoryController {
 
     // получить список категорий
     @GetMapping
-    public List<Category> listCategories() {
+    public List<CategoryDto> listCategories() {
         return categoryService.getAllCategories();
     }
 
     // добавить категорию
     @PostMapping("add_category")
-    public Category addCategory(@RequestBody Category category) {
-        return categoryService.addCategory(category);
+    public CategoryDto addCategory(@RequestBody CategoryDto categoryDto) {
+        return categoryService.addCategory(categoryDto);
     }
 
+
     // изменить категорию
-    @PutMapping("update_category")
-    public Category updateCategory(Category category) {
-        return categoryService.updateCategory(category);
+    @PutMapping("update_category/{id}")
+    public CategoryDto updateCategory(@PathVariable Integer id,
+                                      @RequestBody CategoryDto categoryDto) {
+        return categoryService.updateCategory(id, categoryDto);
     }
 
     // удалить категорию
@@ -41,13 +44,7 @@ public class CategoryController {
 
     // получить категорию по id
     @GetMapping("/{id}")
-    public Category getCategoryById(@PathVariable Integer id) {
+    public CategoryDto getCategoryById(@PathVariable Integer id) {
         return categoryService.getCategoryById(id);
-    }
-
-    // получить категорию по title
-    @GetMapping("/{title}")
-    public Category getCategoryByTitle(@PathVariable String title) {
-        return categoryService.getCategoryByTitle(title);
     }
 }

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import ru.vsu.app.models.Habit;
-import ru.vsu.app.models.HabitDto;
+import ru.vsu.app.models.dto.HabitDto;
 import ru.vsu.app.models.mappers.HabitMapper;
 import ru.vsu.app.repositories.CategoryRepository;
 import ru.vsu.app.repositories.HabitRepository;

@@ -3,8 +3,7 @@ package ru.vsu.app.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.vsu.app.models.Habit;
-import ru.vsu.app.models.HabitDto;
+import ru.vsu.app.models.dto.HabitDto;
 import ru.vsu.app.services.HabitService;
 
 import java.util.List;
@@ -31,7 +30,8 @@ public class HabitController {
 
     // изменить привычку
     @PutMapping("update_habit/{id}")
-    public HabitDto updateHabit(@PathVariable Integer id, @RequestBody HabitDto habitDto) {
+    public HabitDto updateHabit(@PathVariable Integer id,
+                                @RequestBody HabitDto habitDto) {
         return habitService.updateHabit(id, habitDto);
     }
 

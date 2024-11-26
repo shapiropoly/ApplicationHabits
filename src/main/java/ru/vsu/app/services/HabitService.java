@@ -1,7 +1,6 @@
 package ru.vsu.app.services;
 
-import ru.vsu.app.models.HabitDto;
-import ru.vsu.app.models.Habit;
+import ru.vsu.app.models.dto.HabitDto;
 
 import java.util.List;
 

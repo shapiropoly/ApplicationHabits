@@ -1,4 +1,4 @@
-package ru.vsu.app.models;
+package ru.vsu.app.models.dto;
 
 import lombok.Getter;
 import lombok.Setter;

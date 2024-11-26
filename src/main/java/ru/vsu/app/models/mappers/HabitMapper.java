@@ -1,7 +1,7 @@
 package ru.vsu.app.models.mappers;
 
 import ru.vsu.app.models.Habit;
-import ru.vsu.app.models.HabitDto;
+import ru.vsu.app.models.dto.HabitDto;
 
 public class HabitMapper {
     public static HabitDto toHabitDto(Habit habit) {

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -13,22 +13,21 @@ import java.util.Date;
 public class CheckUp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "check_up_id")
+    @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "date_check_up")
-    private Date dateCheckUp;
+    @Column(name = "date_check", nullable = false)
+    private LocalDate dateCheckUp;
 
-    @ManyToOne
-    @JoinColumn(name = "user_to_habit_id")
-    private UserToHabit userToHabitId;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_to_habit_id", referencedColumnName = "id")
+    private UserToHabit userToHabit;
 
     public CheckUp() {
     }
 
-    public CheckUp(Date dateCheckUp, UserToHabit userToHabitId) {
+    public CheckUp(LocalDate dateCheckUp, UserToHabit userToHabit) {
         this.dateCheckUp = dateCheckUp;
-        this.userToHabitId = userToHabitId;
+        this.userToHabit = userToHabit;
     }
 }

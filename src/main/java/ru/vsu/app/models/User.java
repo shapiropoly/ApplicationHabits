@@ -33,7 +33,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_to_roles",
@@ -41,6 +40,14 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<Role> role_ids = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "users_to_habits",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "habit_id")
+    )
+    private List<Habit> habits_id = new ArrayList<>();
 
     @Column(name = "dateregistration")
     private LocalDate dateRegistration;

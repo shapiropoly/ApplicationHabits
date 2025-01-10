@@ -13,7 +13,7 @@ CREATE TABLE users_to_habits (
     habit_id INTEGER NOT NULL,
     frequency TEXT,
     replay INTEGER,
-    data_start DATE NOT NULL,
+    date_start DATE NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (habit_id) REFERENCES habits(id)
 );
@@ -30,7 +30,7 @@ CREATE TABLE habits_to_collections (
 
 CREATE TABLE check_up (
 id SERIAL PRIMARY KEY,
-dateCheck date NOT NULL,
+date_check date NOT NULL,
 user_to_habit_id INTEGER NOT NULL,
 FOREIGN KEY (user_to_habit_id) REFERENCES users_to_habits(id)
 );

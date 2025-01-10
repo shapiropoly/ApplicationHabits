@@ -8,14 +8,14 @@ import ru.vsu.app.services.RoleService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/roles")
+@RequestMapping("/api/v1/")
 @AllArgsConstructor
 public class RoleController {
 
     private final RoleService roleService;
 
     // получить список ролей
-    @GetMapping
+    @GetMapping("roles")
     public List<Role> listRoles() {
         return roleService.getAllRole();
     }
@@ -40,7 +40,7 @@ public class RoleController {
     }
 
     // получить роль по id
-    @GetMapping("/{id}")
+    @GetMapping("roles/{id}")
     public Role getRoleById(@PathVariable Integer id) {
         return roleService.getRoleById(id);
     }

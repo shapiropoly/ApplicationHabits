@@ -7,4 +7,5 @@ import ru.vsu.app.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
     User getUserByUsername(String username);
+    User getUserByEmail(String email);
 }

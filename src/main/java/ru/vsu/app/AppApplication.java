@@ -29,9 +29,15 @@ public class AppApplication implements CommandLineRunner {
 	private final HabitRepository habitRepository;
 
 	@Autowired
-	public AppApplication(CategoryService categoryService, RoleService roleService, UserRepository userRepository, RoleRepository roleRepository,
-						  CategoryRepository categoryRepository, HabitService habitService,
-						  HabitRepository habitRepository) {
+	public AppApplication(
+			CategoryService categoryService,
+			RoleService roleService,
+			UserRepository userRepository,
+			RoleRepository roleRepository,
+			CategoryRepository categoryRepository,
+			HabitService habitService,
+			HabitRepository habitRepository) {
+
 		this.categoryService = categoryService;
 		this.roleService = roleService;
 		this.habitService = habitService;
@@ -53,6 +59,8 @@ public class AppApplication implements CommandLineRunner {
 		if (roles.isEmpty()) {
 			throw new RuntimeException("Не найдены роли!");
 		}
+
+//		UserToHabit userToHabit1 = new UserToHabit()
 
 //		System.out.println("Роли: " + roles);
 

@@ -12,7 +12,7 @@ public class HabitToCollection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "habits_to_collections_id")
+    @Column(name = "id", nullable = false)
     private int id;
 
     @ManyToOne

@@ -7,13 +7,16 @@ import org.springframework.stereotype.Service;
 import ru.vsu.app.models.Category;
 import ru.vsu.app.models.Habit;
 import ru.vsu.app.models.dto.CategoryDto;
+import ru.vsu.app.models.dto.HabitDto;
 import ru.vsu.app.models.mappers.CategoryMapper;
 import ru.vsu.app.repositories.CategoryRepository;
 import ru.vsu.app.repositories.HabitRepository;
 import ru.vsu.app.services.CategoryService;
+import ru.vsu.app.services.HabitService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +26,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     private CategoryRepository categoryRepository;
     private final HabitRepository habitRepository;
+    private final HabitService habitService;
 
     @Override
     public List<CategoryDto> getAllCategories() {
@@ -39,18 +43,6 @@ public class CategoryServiceImpl implements CategoryService {
 
         category.setTitle(categoryDto.getTitle());
         category.setDescription(categoryDto.getDescription());
-
-        List<Habit> habitsList = new ArrayList<>();
-
-        if (categoryDto.getHabitsId() != null) {
-            for (Integer id : categoryDto.getHabitsId()) {
-                Habit habit = habitRepository.findById(id).orElseThrow(() ->
-                        new IllegalArgumentException("Привычка не найдена"));
-                habitsList.add(habit);
-            }
-        }
-
-        category.setHabits(habitsList);
         category.setImage(categoryDto.getImage());
 
         Category savedCategory = categoryRepository.save(category);
@@ -69,22 +61,13 @@ public class CategoryServiceImpl implements CategoryService {
         existingCategory.setDescription(categoryDto.getDescription());
         existingCategory.setImage(categoryDto.getImage());
 
+        List<Habit> habits = habitRepository.findByCategoryId(id);
 
-        List<Habit> habitsList = new ArrayList<>();
-        for (Integer habitId : categoryDto.getHabitsId()) {
-            Habit habit = habitRepository.findById(habitId)
-                    .orElseThrow(() -> new IllegalArgumentException("Привычка не найдена"));
-            habitsList.add(habit);
+        for (Habit habit : habits) {
+            habit.setCategory(existingCategory);
         }
-
-        existingCategory.setHabits(habitsList);
 
         Category savedCategory = categoryRepository.save(existingCategory);
-
-        for (Habit habit: savedCategory.getHabits()) {
-            habit.setCategory(savedCategory);
-        }
-
         return CategoryMapper.toCategoryDto(savedCategory);
     }
 

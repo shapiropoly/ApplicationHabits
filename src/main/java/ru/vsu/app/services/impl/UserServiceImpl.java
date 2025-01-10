@@ -94,6 +94,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDto getUserByEmail(String email) {
+        User findUser = userRepository.getUserByEmail(email);
+        return UserMappers.toUserDto(findUser);
+    }
+
+    @Override
     public void addRoleToUser(Integer userId, Integer roleId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("Пользователь не найден"));

@@ -20,6 +20,8 @@ public interface UserService {
 
     UserDto getUserByUsername(String username);
 
+    UserDto getUserByEmail(String email);
+
     void addRoleToUser(Integer userId, Integer roleId);
 
     void removeRoleFromUser(Integer userId, Integer roleId);

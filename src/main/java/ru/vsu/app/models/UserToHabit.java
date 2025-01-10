@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,7 +15,7 @@ public class UserToHabit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "users_to_habits_id")
+    @Column(name = "id", nullable = false)
     private int id;
 
     @ManyToOne
@@ -28,22 +29,25 @@ public class UserToHabit {
     @Column(name = "frequency")
     private String frequency;
 
-    @Column(name = "reply")
-    private int reply;
+    @Column(name = "replay")
+    private int replay;
 
     @Column(name = "date_start")
     private LocalDate dateStart;
+
+    @OneToMany(mappedBy = "userToHabit", cascade = CascadeType.ALL)
+    private List<CheckUp> checkUps;
 
 
     public UserToHabit() {
     }
 
     public UserToHabit(User user, Habit habit, String frequency,
-                       int reply, LocalDate dateStart) {
+                       int replay, LocalDate dateStart) {
         this.user = user;
         this.habit = habit;
         this.frequency = frequency;
-        this.reply = reply;
+        this.replay = replay;
         this.dateStart = dateStart;
     }
 }

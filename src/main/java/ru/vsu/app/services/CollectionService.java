@@ -9,7 +9,7 @@ public interface CollectionService {
 
     Collection addCollection(Collection collection);
 
-    Collection updateCollection(Collection collection);
+    Collection updateCollection(Integer id, Collection collection);
 
     void deleteCollection(Integer id);
 

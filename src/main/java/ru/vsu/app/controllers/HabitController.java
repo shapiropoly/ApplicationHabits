@@ -10,14 +10,14 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/v1/habits")
+@RequestMapping("/api/v1/")
 @AllArgsConstructor
 public class HabitController {
 
     private final HabitService habitService;
 
     // получить список привычек
-    @GetMapping
+    @GetMapping("habits")
     public List<HabitDto> getAllHabits() {
         return habitService.getAllHabits();
     }
@@ -42,7 +42,7 @@ public class HabitController {
     }
 
     // получить привычку по id
-    @GetMapping("/{id}")
+    @GetMapping("habits/{id}")
     public HabitDto getHabitById(@PathVariable Integer id) {
         return habitService.getHabitById(id);
     }

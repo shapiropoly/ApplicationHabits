@@ -9,14 +9,14 @@ import ru.vsu.app.services.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/")
 @AllArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
     // получить список пользователей
-    @GetMapping
+    @GetMapping("users")
     public List<UserDto> listUsers() {
         return userService.getAllUsers();
     }
@@ -41,26 +41,33 @@ public class UserController {
     }
 
     // получить привычку по id
-    @GetMapping("/id/{id}")
+    @GetMapping("users/{id}")
     public UserDto getUserById(@PathVariable Integer id) {
         return userService.getUserById(id);
     }
 
     // получить привычку по username
-    @GetMapping("/username/{username}")
+    @GetMapping("users/username/{username}")
     public UserDto getUserByUsername(@PathVariable String username) {
         return userService.getUserByUsername(username);
     }
 
+    // получить привычку по email
+    @GetMapping("users/email/{email}")
+    public UserDto getUserByEmail(@PathVariable String email) {
+        return userService.getUserByEmail(email);
+    }
+
+
     // добавить роль пользователю
-    @PostMapping("/{userId}/roles/{roleId}")
+    @PostMapping("users/{userId}/roles/{roleId}")
     public void addRoleToUser(@PathVariable Integer userId,
                                     @PathVariable Integer roleId) {
         userService.addRoleToUser(userId, roleId);
     }
 
     // удалить роль у пользователя
-    @DeleteMapping("/{userId}/roles/{roleId}")
+    @DeleteMapping("users/{userId}/roles/{roleId}")
     public void removeRoleFromUser(@PathVariable Integer userId,
                                    @PathVariable Integer roleId) {
         userService.removeRoleFromUser(userId, roleId);

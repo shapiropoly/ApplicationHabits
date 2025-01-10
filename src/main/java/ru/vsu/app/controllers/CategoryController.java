@@ -10,14 +10,14 @@ import ru.vsu.app.services.CategoryService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/categories")
+@RequestMapping("/api/v1/")
 @AllArgsConstructor
 public class CategoryController {
 
     private final CategoryService categoryService;
 
     // получить список категорий
-    @GetMapping
+    @GetMapping("categories")
     public List<CategoryDto> listCategories() {
         return categoryService.getAllCategories();
     }
@@ -43,7 +43,7 @@ public class CategoryController {
     }
 
     // получить категорию по id
-    @GetMapping("/{id}")
+    @GetMapping("categories/{id}")
     public CategoryDto getCategoryById(@PathVariable Integer id) {
         return categoryService.getCategoryById(id);
     }

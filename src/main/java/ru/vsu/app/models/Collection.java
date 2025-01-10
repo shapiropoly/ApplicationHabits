@@ -1,8 +1,12 @@
 package ru.vsu.app.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,6 +27,15 @@ public class Collection {
 
     @Column(name = "image")
     private String image;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @JoinTable(
+            name = "habits_to_collections",
+            joinColumns = @JoinColumn(name = "collection_id"),
+            inverseJoinColumns = @JoinColumn(name = "habit_id")
+    )
+    private List<Habit> habits_id = new ArrayList<>();
 
 
     public Collection() {

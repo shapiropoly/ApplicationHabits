@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -24,9 +27,29 @@ public class Habit {
     @Column(name = "image")
     private String image;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
+
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "habits_to_collections",
+            joinColumns = @JoinColumn(name = "habit_id"),
+            inverseJoinColumns = @JoinColumn(name = "collection_id")
+    )
+    private List<Collection> collections_id = new ArrayList<>();
+
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "users_to_habits",
+            joinColumns = @JoinColumn(name = "habit_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<User> users_id = new ArrayList<>();
+
 
     public Habit() {
     }
@@ -36,5 +59,10 @@ public class Habit {
         this.description = description;
         this.category = category;
         this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "Habit: " + id + " " + title;
     }
 }

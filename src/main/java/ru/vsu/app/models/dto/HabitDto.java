@@ -16,7 +16,8 @@ public class HabitDto {
     public HabitDto() {
     }
 
-    public HabitDto(String title, String description, Integer categoryId, String image) {
+    public HabitDto(String title, String description,
+                    Integer categoryId, String image) {
         this.title = title;
         this.description = description;
         this.categoryId = categoryId;

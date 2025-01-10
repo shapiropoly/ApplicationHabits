@@ -3,7 +3,6 @@ package ru.vsu.app.services.impl;
 import ru.vsu.app.models.*;
 import ru.vsu.app.models.dto.HabitToCollectionDto;
 import ru.vsu.app.models.mappers.HabitToCollectionMapper;
-import ru.vsu.app.models.mappers.UserToHabitMapper;
 import ru.vsu.app.repositories.CollectionRepository;
 import ru.vsu.app.repositories.HabitRepository;
 import ru.vsu.app.repositories.HabitToCollectionRepository;
@@ -27,7 +26,7 @@ public class HabitToCollectionServiceImpl implements HabitToCollectionService {
     }
 
     @Override
-    public HabitToCollectionDto addUserToHabit(HabitToCollectionDto habitToCollection) {
+    public HabitToCollectionDto addHabitToCollection(HabitToCollectionDto habitToCollection) {
         HabitToCollection newHabitToCollection = new HabitToCollection();
 
         Habit habit = habitRepository.findById(habitToCollection.getHabitId())
@@ -46,7 +45,7 @@ public class HabitToCollectionServiceImpl implements HabitToCollectionService {
     }
 
     @Override
-    public HabitToCollectionDto updateUserToHabit(Integer id, HabitToCollectionDto habitToCollection) {
+    public HabitToCollectionDto updateHabitToCollection(Integer id, HabitToCollectionDto habitToCollection) {
         HabitToCollection existingHabitToCollection = habitToCollectionRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(
                         "HabitToCollection с id: " + id + " не найден"));

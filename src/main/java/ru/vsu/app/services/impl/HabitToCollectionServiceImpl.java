@@ -1,5 +1,8 @@
 package ru.vsu.app.services.impl;
 
+import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 import ru.vsu.app.models.*;
 import ru.vsu.app.models.dto.HabitToCollectionDto;
 import ru.vsu.app.models.mappers.HabitToCollectionMapper;
@@ -11,6 +14,9 @@ import ru.vsu.app.services.HabitToCollectionService;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
+@AllArgsConstructor
+@Primary
 public class HabitToCollectionServiceImpl implements HabitToCollectionService {
 
     private HabitToCollectionRepository habitToCollectionRepository;

@@ -11,6 +11,7 @@ import ru.vsu.app.repositories.HabitRepository;
 import ru.vsu.app.repositories.RoleRepository;
 import ru.vsu.app.repositories.UserRepository;
 import ru.vsu.app.services.CategoryService;
+import ru.vsu.app.services.CollectionService;
 import ru.vsu.app.services.HabitService;
 import ru.vsu.app.services.RoleService;
 
@@ -20,6 +21,7 @@ import java.util.List;
 @SpringBootApplication
 public class AppApplication implements CommandLineRunner {
 	private final CategoryService categoryService;
+	private final CollectionService collectionService;
 	private final RoleService roleService;
 	private final HabitService habitService;
 
@@ -31,6 +33,7 @@ public class AppApplication implements CommandLineRunner {
 	@Autowired
 	public AppApplication(
 			CategoryService categoryService,
+			CollectionService collectionService,
 			RoleService roleService,
 			UserRepository userRepository,
 			RoleRepository roleRepository,
@@ -39,6 +42,7 @@ public class AppApplication implements CommandLineRunner {
 			HabitRepository habitRepository) {
 
 		this.categoryService = categoryService;
+		this.collectionService = collectionService;
 		this.roleService = roleService;
 		this.habitService = habitService;
         this.userRepository = userRepository;

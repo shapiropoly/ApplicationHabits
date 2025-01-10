@@ -1,6 +1,5 @@
 package ru.vsu.app.services;
 
-import ru.vsu.app.models.Category;
 import ru.vsu.app.models.dto.CategoryDto;
 
 import java.util.List;

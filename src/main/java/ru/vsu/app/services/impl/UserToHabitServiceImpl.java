@@ -87,10 +87,17 @@ public class UserToHabitServiceImpl implements UserToHabitService {
     }
 
     @Override
-    public UserToHabitDto getUserToHabitById(Integer id) {
-        UserToHabit find = userToHabitRepository.findById(id)
+    public UserToHabit getUserToHabitById(Integer id) {
+        return userToHabitRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(
                         "UserToHabit c id: "+ id + " не найден"));
-        return UserToHabitMapper.toUserToHabitDto(find);
+    }
+
+    @Override
+    public List<UserToHabitDto> getListHabitsByUserId(Integer userId) {
+        return userToHabitRepository.findAll().stream()
+                .filter(userToHabit -> userToHabit.getUser().getId() == userId)
+                .map(UserToHabitMapper::toUserToHabitDto)
+                .collect(Collectors.toList());
     }
 }

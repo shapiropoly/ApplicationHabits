@@ -2,6 +2,7 @@ package ru.vsu.app.controllers;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import ru.vsu.app.models.UserToHabit;
 import ru.vsu.app.models.dto.UserToHabitDto;
 import ru.vsu.app.services.UserToHabitService;
 
@@ -39,7 +40,14 @@ public class UserToHabitController {
 
     // получить по id
     @GetMapping("user_to_habits/{id}")
-    public UserToHabitDto getUserToHabitById(@PathVariable Integer id) {
+    public UserToHabit getUserToHabitById(@PathVariable Integer id) {
         return userToHabitService.getUserToHabitById(id);
     }
+
+    // получить по id
+    @GetMapping("user_to_habits/user/{user_id}")
+    public List<UserToHabitDto> getListHabitsByUserId(@PathVariable("user_id") Integer userId) {
+        return userToHabitService.getListHabitsByUserId(userId);
+    }
+
 }

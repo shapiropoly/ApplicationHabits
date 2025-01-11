@@ -14,5 +14,7 @@ public interface UserToHabitService {
 
     void deleteUserToHabit(Integer id);
 
-    UserToHabitDto getUserToHabitById(Integer id);
+    UserToHabit getUserToHabitById(Integer id);
+
+    List<UserToHabitDto> getListHabitsByUserId(Integer userId);
 }

@@ -10,7 +10,8 @@ import java.time.LocalDate;
 public class UserHabitCheckUpDTO {
     private int checkUpId;
     private LocalDate dateCheckUp;
-    private int userToHabitId;
+    private int userId;
+    private int habitId;
     private LocalDate dateStart;
     private String frequency;
     private int replay;
@@ -18,11 +19,13 @@ public class UserHabitCheckUpDTO {
     public UserHabitCheckUpDTO() {
     };
 
-    public UserHabitCheckUpDTO(int checkUpId, LocalDate dateCheckUp, int userToHabitId,
-                               LocalDate dateStart, String frequency, int replay) {
+    public UserHabitCheckUpDTO(int checkUpId, LocalDate dateCheckUp,
+                               int userId, int habitId, LocalDate dateStart,
+                               String frequency, int replay) {
         this.checkUpId = checkUpId;
         this.dateCheckUp = dateCheckUp;
-        this.userToHabitId = userToHabitId;
+        this.userId = userId;
+        this.habitId = habitId;
         this.dateStart = dateStart;
         this.frequency = frequency;
         this.replay = replay;

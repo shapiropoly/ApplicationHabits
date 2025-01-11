@@ -10,6 +10,9 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class UserToHabitDto {
+    @JsonProperty("id")
+    private int id;
+
     @JsonProperty("user_id")
     private int userId;
 
@@ -20,14 +23,15 @@ public class UserToHabitDto {
 
     private int replay;
 
-    @JsonProperty("data_start")
+    @JsonProperty("date_start")
     private LocalDate dateStart;
 
     public UserToHabitDto() {
     }
 
-    public UserToHabitDto(int userId, int habitId, String frequency,
+    public UserToHabitDto(int id, int userId, int habitId, String frequency,
                           int replay, LocalDate dateStart) {
+        this.id = id;
         this.userId = userId;
         this.habitId = habitId;
         this.frequency = frequency;

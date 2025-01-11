@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface CheckUpRepository extends JpaRepository<CheckUp, Integer> {
     @Query("SELECT new ru.vsu.app.models.dto.UserHabitCheckUpDTO(" +
-            "c.id, c.dateCheckUp, u.id, u.dateStart, u.frequency, u.replay) " +
+            "c.id, c.dateCheckUp, u.user.id, u.habit.id, u.dateStart, u.frequency, u.replay) " +
             "FROM CheckUp c " +
             "JOIN c.userToHabit u " +
             "WHERE u.user.id = :userId")

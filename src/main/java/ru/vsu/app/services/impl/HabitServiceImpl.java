@@ -9,6 +9,7 @@ import ru.vsu.app.models.dto.HabitDto;
 import ru.vsu.app.models.mappers.HabitMapper;
 import ru.vsu.app.repositories.CategoryRepository;
 import ru.vsu.app.repositories.HabitRepository;
+import ru.vsu.app.repositories.HabitToCollectionRepository;
 import ru.vsu.app.services.HabitService;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class HabitServiceImpl implements HabitService {
 
     private final HabitRepository habitRepository;
+    private final HabitToCollectionRepository habitToCollectionRepository;
     private final CategoryRepository categoryRepository;
 
     // Получить список привычек
@@ -78,6 +80,18 @@ public class HabitServiceImpl implements HabitService {
     public void deleteHabit(Integer id) {
         habitRepository.deleteById(id);
     }
+
+    @Override
+    public List<HabitDto> getHabitsByCollectionId(Integer collectionId) {
+        return habitToCollectionRepository.findAll().stream()
+                .filter(habitToCollection -> habitToCollection.getCollection().getId()== collectionId)
+                .map(habitToCollection -> {
+                    Habit habit = habitToCollection.getHabit();
+                    return HabitMapper.toHabitDto(habit);
+                })
+                .collect(Collectors.toList());
+    }
+
 
     @Override
     public HabitDto getHabitById(Integer id) {

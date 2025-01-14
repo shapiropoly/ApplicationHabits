@@ -35,7 +35,7 @@ public class Habit {
     private Category category;
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "habits_to_collections",
             joinColumns = @JoinColumn(name = "habit_id"),
@@ -44,7 +44,7 @@ public class Habit {
     private List<Collection> collections_id = new ArrayList<>();
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinTable(
             name = "users_to_habits",
             joinColumns = @JoinColumn(name = "habit_id"),

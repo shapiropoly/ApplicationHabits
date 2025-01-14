@@ -35,7 +35,7 @@ public class UserToHabit {
     @Column(name = "date_start")
     private LocalDate dateStart;
 
-    @OneToMany(mappedBy = "userToHabit", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userToHabit", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CheckUp> checkUps;
 
 

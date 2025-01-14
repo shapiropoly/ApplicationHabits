@@ -19,7 +19,7 @@ public class CheckUp {
     @Column(name = "date_check", nullable = false)
     private LocalDate dateCheckUp;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_to_habit_id", referencedColumnName = "id")
     private UserToHabit userToHabit;
 

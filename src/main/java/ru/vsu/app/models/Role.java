@@ -22,7 +22,7 @@ public class Role {
     @Column(name = "title")
     private String title;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinTable(
             name = "users_to_roles",

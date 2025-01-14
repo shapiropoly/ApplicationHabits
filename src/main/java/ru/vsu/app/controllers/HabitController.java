@@ -41,6 +41,11 @@ public class HabitController {
         habitService.deleteHabit(id);
     }
 
+    @GetMapping("habits/collections/{collection_id}")
+    public List<HabitDto> getHabitsByCollectionId(@PathVariable("collection_id") Integer collectionId) {
+        return habitService.getHabitsByCollectionId(collectionId);
+    }
+
     // получить привычку по id
     @GetMapping("habits/{id}")
     public HabitDto getHabitById(@PathVariable Integer id) {

@@ -33,7 +33,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_to_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -41,7 +41,7 @@ public class User {
     )
     private List<Role> role_ids = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_to_habits",
             joinColumns = @JoinColumn(name = "user_id"),
